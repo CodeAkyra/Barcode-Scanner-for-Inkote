@@ -14,21 +14,17 @@
     <?php include 'add-product.php';
     ?>
     <center>
+
         <?php
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "inkote";
-
-        $conn = mysqli_connect($servername, $username, $password, $dbname);
-
-        if (!$conn) {
-            die("Connection failed: " . mysqli_connect_error());
-        }
+        include 'conn.php';
         ?>
-
         <h1>
-            Search by Name or Scan using Barcode
+            Inkote Inventory Prototype
+        </h1>
+        <br>
+        <br>
+        <h1 class="d-flex align-items-end gap-3">
+            SEARCH BY NAME OR SCAN BARCODE
         </h1>
 
         <br>
@@ -51,19 +47,10 @@
                 <div class="col-auto">
                     <button type="submit" class="btn btn-primary mb-3">Search</button>
                 </div>
-                <div class="col-auto">
-                    <button type="button" class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Add Product
-                    </button>
-                </div>
             </form>
 
 
         </div>
-
-
-
-
 
         <br>
 
@@ -132,9 +119,18 @@
         </div>
 
         <br>
-        <br>
 
-        <h1>________________________________INVENTORY TABLE________________________________</h1>
+        <div class="d-flex align-items-end gap-3">
+            <h1>
+                INVENTORY TABLE
+            </h1>
+            <div class="col-auto">
+                <button type="button" class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Add Product
+                </button>
+            </div>
+        </div>
+
 
         <?php
 
@@ -159,8 +155,8 @@
             <td>{$row["available_quantity"]}</td>
             <td>{$row["maintaining_level"]}</td>
             <td>
-            <button>Edit</button>
-            <button>Archive</button>
+            <button class='btn btn-primary'>Edit</button>
+            <button class='btn btn-secondary'>Archive</button>
             </td>
             </tr>";
                 };
