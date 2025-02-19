@@ -11,7 +11,8 @@
 
 <body style="margin: 100px;">
 
-
+    <?php include 'add-product.php';
+    ?>
     <center>
         <?php
         $servername = "localhost";
@@ -30,19 +31,47 @@
             Search by Name or Scan using Barcode
         </h1>
 
-        <div>
-            <form action="" method="GET">
-                <input type="text" name="productName" placeholder="Enter Serial Code" style="height: 50px;">
-                <input type="text" name="serial_code" placeholder="Enter Serial Code" style="height: 50px;">
-                <button type="submit" style="height: 50px;"> Search Product </button>
+        <br>
+
+        <div class="d-flex align-items-end gap-3">
+            <form action="" method="GET" class="d-flex gap-3">
+                <div class="col-auto">
+                    <label class="col-form-label fw-bold">Enter Product Name</label>
+                </div>
+                <div class="col-auto">
+                    <input type="text" class="form-control" name="productName" placeholder="Enter product name" style="width: 250px;">
+                </div>
+                <div class="col-auto">
+                    <label class="col-form-label fw-bold">Enter Serial Code</label>
+                </div>
+                <div class="col-auto">
+                    <input type="text" class="form-control" name="serial_code" placeholder="Enter serial code" style="width: 250px;">
+                </div>
+
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary mb-3">Search</button>
+                </div>
+                <div class="col-auto">
+                    <button type="button" class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Add Product
+                    </button>
+                </div>
             </form>
+
+
         </div>
+
+
+
+
+
+        <br>
 
         <?php
         $found = false; // para mag display kung may product or wala
 
         if (isset($_GET['serial_code']) || isset($_GET['productName'])) {
-            echo "<table class='table table-striped'>";
+            echo "<table class='table table-striped' style='text-align: center;'>";
             echo "<tr>
             <th>Product ID</th>
             <th>Product Serial Code</th>
@@ -105,13 +134,13 @@
         <br>
         <br>
 
-        <h1>_______________________________________INVENTORY TABLE_______________________________________</h1>
+        <h1>________________________________INVENTORY TABLE________________________________</h1>
 
         <?php
 
         $sql = "SELECT * FROM hempel_product";
         $result = mysqli_query($conn, $sql); {
-            echo "<table class='table table-striped border='1'>";
+            echo "<table class='table table-striped border='1' style='text-align: center;'>";
             echo "<tr>
         <th>Product ID</th>
         <th>Product Serial Code</th>
@@ -129,7 +158,10 @@
             <td>{$row["product_name"]}</td>
             <td>{$row["available_quantity"]}</td>
             <td>{$row["maintaining_level"]}</td>
-            <td><button>Edit</button></td> <!-- GET yung product id, tapos pwede na ma edit yung buong table row -->
+            <td>
+            <button>Edit</button>
+            <button>Archive</button>
+            </td>
             </tr>";
                 };
             } else {
@@ -140,10 +172,9 @@
         }
         ?>
     </center>
-
-
-
-    <!-- THIS IS A PROTOTYPE ONLY! -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
+
+<!-- THIS IS A PROTOTYPE ONLY! -->
